@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Project;
+use App\Models\Experience;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class ProjectController extends Controller
+class ExperienceController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(): JsonResponse
     {
-        return response()->json(Project::all());
+        return response()->json(Experience::all());
     }
 
     /**
@@ -30,34 +30,35 @@ class ProjectController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
-        $validated = $request->validate([
+        $validate = $request->validate([
             'student_id' => 'required',
             'name' => 'required',
+            'position' => 'required',
             'description' => 'required',
-            'source_link' => 'required',
-            'demo_link' => 'required',
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date',
         ]);
 
-        $project = Project::query()->create($validated);
+        $experience = Experience::query()->create($validate);
         return response()->json([
-            'message' => 'Project created successfully.',
+            'message' => 'Experience Created Successfully',
             'status' => 'success',
-            'project' => $project
+            'experience' => $experience
         ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Project $project): JsonResponse
+    public function show(Experience $experience): JsonResponse
     {
-        return response()->json($project);
+        return response()->json($experience);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Project $project)
+    public function edit(Experience $experience)
     {
         //
     }
@@ -65,35 +66,35 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Project $project): JsonResponse
+    public function update(Request $request, Experience $experience): JsonResponse
     {
-        $validated = $request->validate([
+        $validate = $request->validate([
             'student_id' => 'required',
             'name' => 'required',
+            'position' => 'required',
             'description' => 'required',
-            'source_link' => 'required',
-            'demo_link' => 'required',
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date',
         ]);
 
-        $project->update($validated);
+        $experience->update($validate);
         return response()->json([
-            'message' => 'Project updated successfully.',
+            'message' => 'Experience Updated Successfully',
             'status' => 'success',
-            'project' => $project
+            'experience' => $experience
         ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Project $project): JsonResponse
+    public function destroy(Experience $experience): JsonResponse
     {
-        $project->delete();
-
+        $experience->delete();
         return response()->json([
-            'message' => 'Project deleted successfully.',
+            'message' => 'Experience Deleted Successfully',
             'status' => 'success',
-            'project' => $project
+            'experience' => $experience
         ]);
     }
 }
