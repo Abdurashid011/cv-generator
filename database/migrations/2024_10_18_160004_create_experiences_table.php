@@ -13,14 +13,15 @@ return new class extends Migration {
         Schema::create('experiences', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')->constrained('students')->onDelete('cascade');
-            $table->string('name', 32);
+            $table->string('name', 64);
             $table->string('position', 128);
             $table->text('description')->nullable();
-            $table->timestamp('start_data')->nullable();
-            $table->timestamp('end_data')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

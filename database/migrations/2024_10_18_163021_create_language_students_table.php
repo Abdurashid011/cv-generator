@@ -11,11 +11,13 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('language_students', function (Blueprint $table) {
-            $table->foreignId('student_id')->constrained('students')->onDelete('cascade');
-            $table->foreignId('language_id')->constrained('language')->onDelete('cascade');
-            $table->primary(['student_id', 'language_id']);
+            $table->id();
+            $table->foreignId('language_id')->constrained()->onDelete('cascade');
+            $table->foreignId('student_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\SocialNetwork;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,10 +15,13 @@ class SocialNetworkFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model = SocialNetwork::class;
+
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'link' => $this->faker->url(),
         ];
     }
 }

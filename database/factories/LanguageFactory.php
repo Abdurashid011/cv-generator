@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Language;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,10 +15,13 @@ class LanguageFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model = Language::class;
+
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'level' => $this->faker->randomElement(['beginner', 'intermediate', 'advanced']),
         ];
     }
 }

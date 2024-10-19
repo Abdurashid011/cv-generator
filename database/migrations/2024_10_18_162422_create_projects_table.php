@@ -13,13 +13,14 @@ return new class extends Migration {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')->constrained('students')->onDelete('cascade');
-            $table->string('name', 32);
+            $table->string('name', 255);
             $table->text('description')->nullable();
             $table->string('source_link', 256)->nullable();
             $table->string('demo_link', 256)->nullable();
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

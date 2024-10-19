@@ -10,10 +10,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('language', function (Blueprint $table) {
+        Schema::create('languages', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 64);
-            $table->enum('level', ['beginner', 'intermediate', 'advanced', 'fluent']);
+            $table->string('name', 100);
+            $table->string('level', 50);
             $table->timestamps();
         });
     }

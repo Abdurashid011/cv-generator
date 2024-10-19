@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Education;
+use App\Models\Student;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,10 +16,16 @@ class EducationFactory extends Factory
      *
      * @return array<string, mixed>
      */
+   protected $model = Education::class;
+
     public function definition(): array
     {
         return [
-            //
+            'student_id' => Student::factory(),
+            'name' => $this->faker->name(),
+            'description' => $this->faker->text(),
+            'start_date' => $this->faker->date(),
+            'end_date' => $this->faker->date(),
         ];
     }
 }

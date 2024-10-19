@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Experience;
+use App\Models\Student;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,10 +16,17 @@ class ExperienceFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model = Experience::class;
+
     public function definition(): array
     {
         return [
-            //
+            'student_id' => Student::factory(),
+            'name' => $this->faker->company,
+            'position' => $this->faker->jobTitle,
+            'description' => $this->faker->paragraph,
+            'start_date' => $this->faker->date(),
+            'end_date' => $this->faker->date(),
         ];
     }
 }
