@@ -48,7 +48,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
-            cd store
+            cd cv-build
             git pull
             docker-compose -f docker-compose.yml up -d --build
-            docker exec  store_app php artisan optimize
+            docker exec  laravel_app php artisan optimize
