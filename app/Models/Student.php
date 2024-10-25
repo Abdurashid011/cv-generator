@@ -52,3 +52,4 @@ class Student extends Model
         return $this->belongsToMany(Language::class, 'language_students');
     }
 }
+
